@@ -47,23 +47,191 @@ template <typename T>
 class Deq {
 public:
     Deq();
+    Deq(const Deq& dq_new);
+    ~Deq();
+
+    bool IsEmpty();
     void PushFront(T el);
     T PopFront();
     void PushBack(T el);
     T PopBack();
+    Deq& operator=(const Deq& dq_new);
 
 private:
     int start;
     int end;
+    int capacity;
+    int len;
     T * arr;
 };
 
 template <typename T>
 Deq<T>::Deq() {
+    start = 1;
+    end = 0;
+    capacity = 2;
+    len = 0;
 
+    arr = new T[capacity];
+}
+
+template <typename T>
+Deq<T>::Deq(const Deq& dq_new) {
+    delete[] arr;
+
+    start = len - 1;
+    end = 0;
+    len = dq_new.len;
+    capacity = dq_new.capacity;
+    arr = new T[capacity];
+
+    for (int i = 0; i < len; i++) {
+        arr[i] = dq_new.arr[(dq_new.end + 1 + i) % capacity];
+    }
+}
+
+template <typename T>
+Deq<T>::~Deq() {
+    delete[] arr;
+}
+
+template <typename T>
+bool Deq<T>::IsEmpty() {
+    return (len == 0 ? 1 : 0);
+}
+
+template <typename T>
+void Deq<T>::PushFront(T el) {
+    if (len < capacity) {
+        arr[start] = el;
+        start = (start + 1) % capacity;
+        len++;
+    }
+    else {
+        T * new_arr = new T[2 * capacity];
+
+        for (int i = 0; i < len; i++) {
+            new_arr[i] = arr[(end + 1 + i) % capacity];
+        }
+
+        capacity *= 2;
+        end = capacity - 1;
+        start = len;
+
+        delete[] arr;
+        arr = new_arr;
+
+        arr[start++] = el;
+        len++;
+    }
+}
+
+template <typename T>
+T Deq<T>::PopFront() {
+    if (len == 0) {
+        return -1;
+    }
+    else {
+        start--;
+        if (start < 0) start += capacity;
+        len--;
+        return arr[start];
+    }
+}
+
+template <typename T>
+void Deq<T>::PushBack(T el) {
+    if (len < capacity) {
+        arr[end] = el;
+        end--;
+        if (end < 0) end += capacity;
+        len++;
+    }
+    else {
+        T * new_arr = new T[2 * capacity];
+
+        for (int i = 0; i < len; i++) {
+            new_arr[i] = arr[(end + 1 + i) % capacity];
+        }
+
+        capacity *= 2;
+        end = capacity - 1;
+        start = len;
+
+        delete[] arr;
+        arr = new_arr;
+
+        arr[end--] = el;
+        len++;
+    }
+}
+
+template <typename T>
+T Deq<T>::PopBack() {
+    if (len == 0) {
+        return -1;
+    }
+    else {
+        end = (end + 1) % capacity;
+        len--;
+        return arr[end];
+    }
+}
+
+template <typename T>
+Deq<T>& Deq<T>::operator= (const Deq& dq_new) {
+    delete[] arr;
+
+    start = len - 1;
+    end = 0;
+    len = dq_new.len;
+    capacity = dq_new.capacity;
+    arr = new T[capacity];
+
+    for (int i = 0; i < len; i++) {
+        arr[i] = dq_new.arr[(dq_new.end + 1 + i) % capacity];
+    }
 }
 
 int main()
 {
-    std::cout << "Hello World!\n";
+    Deq<int> q1;
+    int n = 0;
+    int buf = 0;
+    int elem = 0;
+
+    std::cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        std::cin >> buf;
+
+        switch (buf) {
+            case 1: 
+                std::cin >> buf;
+                q1.PushFront(buf);
+                break;
+            case 2:
+                std::cin >> buf;
+                elem = q1.PopFront();
+                if (buf != elem) {
+                    std::cout << "NO";
+                    return 0;
+                }
+                break;
+            case 3:
+                std::cin >> buf;
+                q1.PushBack(buf);
+                break;
+            case 4:
+                std::cin >> buf;
+                elem = q1.PopBack();
+                if (buf != elem) {
+                    std::cout << "NO";
+                    return 0;
+                }
+                break;
+        }
+    }
+    std::cout << "YES";
+    return 0;
 }
