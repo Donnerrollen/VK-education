@@ -29,6 +29,11 @@
     font-size: 15px;
 }
 
+.a__log__reg {
+    font-size: 25px;
+    text-decoration: none;
+}
+
 .div__members__tags {
     font-size: 30px;
 }
@@ -36,4 +41,37 @@
 .tags {
     color: black;
     text-decoration: none;
+}
+
+.div__card {
+    border: 2px solid;
+}
+
+.input__card__likes {
+    width: 75px;
+}
+
+.div__card__buttons_likes {
+    width: 20px;
+}
+
+.img__card {
+    height: 144px;
+    width: 104px;
+}
+
+.button__card__likes {
+    height: 15px;
+    border: none;
+    background: none;
+}
+
+.button__card__likes:hover {
+    transition-duration: 1s;
+    border: 1px solid;
+    border-radius: 100px;
+}
+
+.a__card__title {
+    font-size: 25px;
 }
