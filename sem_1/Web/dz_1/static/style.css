@@ -2,6 +2,10 @@
     #border: 1px solid;
 }
 
+.max__width {
+    max-width: 1300px;
+}
+
 .input__search {
     border-radius: 30px;    
 }
@@ -15,23 +19,48 @@
 }
 
 .username {
+    transition: 0.1s;
     display: flex;
     align-items: center;
-    font-size: 30px;
+    font-size: 25px;
+    text-decoration: none;
+    color: black;
+}
+
+.username:active {
+    transition: 0.1s;
+    padding-top: 2px;
+}
+
+.div__nickname {
+    padding-left: 16px;
 }
 
 .img__ava {
-    height: 80px;
-    width: 60px;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
 }
 
 .a__profile {
     font-size: 15px;
+    text-decoration: none;
 }
 
-.a__log__reg {
-    font-size: 25px;
+.a__log__auth__reg {
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 6px 13px 6px 13px;
+    font-size: 20px;
     text-decoration: none;
+    transition: 0.3s;
+    color: blue;
+}
+
+.a__log__auth__reg:hover {
+    transition: 0.3s;
+    background-color: blue;
+    color: white;
 }
 
 .div__members__tags {
@@ -45,10 +74,14 @@
 
 .div__card {
     border: 2px solid;
+    border-color: dimgray;
+    border-radius: 5px;
 }
 
 .input__card__likes {
-    width: 75px;
+    max-width: 60px;
+    height: 25px;
+    flex-shrink: 1
 }
 
 .div__card__buttons_likes {
@@ -56,22 +89,94 @@
 }
 
 .img__card {
-    height: 144px;
-    width: 104px;
+    height: 128px;
+    width: 128px;
 }
 
 .button__card__likes {
-    height: 15px;
-    border: none;
+    padding: 0px 3px 0px 3px;
+    height: 20px;
+    border: none 10px;
+    border-radius: 25%;
     background: none;
+    transition: background 0.2s;
+}
+
+.div__card__answers {
+    text-align: center;
+    padding: 1px 6px 1px 6px;
+    height: 26px;
+    border: 1px solid hsl(148,70%,31%);
+    border-radius: 2px;
+    color: hsl(148,70%,31%);
+    overflow: hidden;
+    min-width: 98px;
+}
+
+.button__card__dislikes {
+    padding: 0px 3px 0px 3px;
+    height: 20px;
+    border: 0;
+    border-radius: 25%;
+    background: none;
+    transition: background-color 0.2s;
 }
 
 .button__card__likes:hover {
-    transition-duration: 1s;
-    border: 1px solid;
-    border-radius: 100px;
+    transition-duration : 0.2s;
+    border-radius: 25%;
+    background: fixed;
+    background-color: lightgray;
+}
+
+.button__card__dislikes:hover {
+    transition-duration: 0.2s;
+    border-radius: 25%;
+    background: fixed;
+    background-color: lightgray;
 }
 
 .a__card__title {
+    text-decoration: none;
     font-size: 25px;
+}
+
+.a__tags {
+    text-decoration: none;
+    padding: 1px 6px 1px 6px;
+    color: black;
+    border-radius: 2px;
+    background-color: whitesmoke;
+    transition: 0.2s;
+}
+
+.a__tags:hover {
+    transition: 0.2s;
+    background-color: gainsboro;
+}
+
+.a__members {
+    text-decoration: none;
+}
+
+.textarea__answer {
+    text-align: start;
+    width: 100%;
+    min-height: 120px;
+}
+
+.button__answer {
+    border: 1px solid;
+    transition: 0.3s;
+    margin-top: 20px;
+    background: none;
+    border-radius: 10px;
+}
+
+.button__answer:hover {
+    transition: 0.3s;
+    margin-top: 20px;
+    background: fixed;
+    background-color: gainsboro;
+    border-radius: 10px;
 }
