@@ -1,0 +1,104 @@
+{% load static %}
+
+<!doctype html>
+
+<html>
+
+<head>
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'css/style.css' %}" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container-fluid p-1 pt-2 pb-0 max__width">
+        <div class="d-flex justify-content-around">
+            <a href="{% url 'questions' %}" class="col-sm-4 username ps-5">AskPimanov</a>
+
+            <div class="col-sm-4 d-flex align-items-center">
+                <div class="row p-2 text-center flex-grow-1">
+                    <div class="p-1 col">
+                        <input id="search input" class="form-control input__search" type="text"
+                            placeholder="Default input" aria-label="default input example"></input>
+                    </div>
+                    <div class="p-1 fixed__button__div col_auto">
+                        <button onclick="window.location.href='{% url 'ask' %}'" type="button"
+                            class="btn btn-outline-success button__search">ASK!</button>
+                    </div>
+                </div>
+            </div>
+
+            {% if auth %}
+            <div class="col-sm-4 pe-5">
+                <div class="d-flex p-1 flex-row gap-3">
+                    <div class="col d-flex justify-content-end pe-0 flex-row">
+                        <img src="{% static 'img/ava.jpg' %}" class="img__ava" alt="image"></img>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-default" id="dropdownMenu" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="position: relative;">
+                            <svg aria-hidden="true" width="23" height="38" viewBox="0 0 60 60">
+                                <g transform="scale(0.06 0.06)">
+                                    <path d="M64 192h896v130h-896zM64 448h896v130h-896zM64 704h896v130h-896z"></path>
+                                </g>
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                            <li>
+                                <div class="div__nickname">Umocho</div>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">log out</a></li>
+                        </ul>
+                    </div>
+
+                </div>
+            </div>
+            {% else %}
+            <div class="col-sm-4 pe-5">
+                <div class="d-flex h-100 justify-content-end align-items-center gap-2">
+                    <a href="{% url 'login' %}" class="a__log__auth__reg">Login</a>
+                    <a href="{% url 'signup' %}" class="a__log__auth__reg">Register</a>
+                </div>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+
+    <hr class="m-1">
+    </hr>
+
+    <div class="row m-0 p-4 max__width m-auto">
+        <div class="col">
+            {% block content %}
+            {% endblock %}
+
+        </div>
+
+        <div class="col-2 pt-4">
+            <div class="div__members__tags pb-1">Popular Tags</div>
+            <div class="d-flex gap-2 flex-wrap">
+                {% for t in popular_tags%}
+                <a href=" {% url 'questions_with_tag' t %} " class="tags a__tags">{{ t }}</a>
+                {% endfor %}
+
+            </div>
+
+            <div class="div__members__tags pt-4 pb-2">Best Members</div>
+            <div class="d-flex flex-column gap-4">
+                {% for bs in best_members %}
+                <a href="#" class="a__members">{{ bs }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.bundle.js' %}"></script>
+
+</body>
+
+</html>

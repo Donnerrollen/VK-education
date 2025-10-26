@@ -1,0 +1,55 @@
+{% extends "askme/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex flex-column gap-3">
+
+    <div class="d-flex fles-row">
+        <h2 class="pe-3">Registration</h2>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="alert alert-danger p-2">Sorry</div>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="d-flex div__settings__login align-items-center" style="vertical-align: middle;">Login</div>
+        <input class="w-75 me-5 p-1" placeholder="Enter login here"></input>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="d-flex div__settings__login align-items-center">Email</div>
+        <input class="w-75 me-5 p-1" placeholder="Enter email here"></input>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="d-flex div__settings__login align-items-center">NickName</div>
+        <input class="w-75 me-5 p-1" placeholder="Enter nickname here"></input>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="d-flex div__settings__login align-items-center">Password</div>
+        <input class="w-75 me-5 p-1" placeholder="Enter password here" type="password"></input>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="d-flex div__settings__login align-items-center">Repeat password</div>
+        <input class="w-75 me-5 p-1" placeholder="Again nter password here" type="password"></input>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="d-flex div__settings__login">Upload avatar</div>
+
+        <div class="d-flex flex-column gap-3">
+            <img src="{% static 'img/ava.jpg' %}" class="img__setting__img" alt="img" />
+
+            <input type="file"></input>
+
+
+        </div>
+    </div>
+
+    <button class="button__register">Register</button>
+
+</div>
+{% endblock %}

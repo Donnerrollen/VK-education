@@ -1,0 +1,8 @@
+{% extends "askme/questions.html" %}
+
+{% block basic_or_top %}
+<div class="d-flex flex-row align-items-center gap-3">
+    <h2 class="pe-3">Hot Questions</h2>
+    <a href="{% url 'questions' %}">New Questions</a>
+</div>
+{% endblock %}

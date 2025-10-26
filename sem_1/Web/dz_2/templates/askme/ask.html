@@ -1,0 +1,31 @@
+{% extends "askme/base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="d-flex flex-column gap-3">
+
+    <h2 class="pe-3">New Question</h2>
+
+    <div class="d-flex flex-row text-center">
+        <div class="alert alert-danger p-2">Empty title</div>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="d-flex div__question__title__text__tags align-items-center">Title</div>
+        <input class="w-75 me-5 p-1" placeholder="Enter card's title"></input>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="div__question__title__text__tags">Text</div>
+        <textarea class="w-75 me-5 p-2" placeholder="Enter card's text" style="height: 250px;"></textarea>
+    </div>
+
+    <div class="d-flex flex-row text-center">
+        <div class="d-flex div__question__title__text__tags align-items-center">Tags</div>
+        <input class="w-75 me-5 p-1 " placeholder="Enter card's tags"></input>
+    </div>
+
+    <button class="button__ask__question">ASK!</button>
+
+</div>
+{% endblock %}
