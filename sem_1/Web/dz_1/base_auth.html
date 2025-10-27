@@ -1,86 +1,94 @@
 <!doctype html>
 
 <html>
-    <head>
-        <link href="static/css/bootstrap.min.css" rel="stylesheet">
-        <link href="static/style.css" rel="stylesheet">
-    </head>
 
-    <body>
-        <div class="container-fluid p-1 pt-2 pb-0 max__width">
-            <div class="d-flex justify-content-around">
-                <a href="#" class="col-sm-4 username ps-5">AskPimanov</a>
+<head>
+    <link href="static/css/bootstrap.min.css" rel="stylesheet">
+    <link href="static/style.css" rel="stylesheet">
+</head>
 
-                <div class="col-sm-4 d-flex align-items-center">
-                    <div class="row p-2 text-center flex-grow-1">
-                        <div class="p-1 col">
-                            <input id="search input" class="form-control input__search" type="text" placeholder="Default input" aria-label="default input example"></input>
-                        </div>
-                        <div class="p-1 fixed__button__div col_auto">
-                            <button type="button" class="btn btn-outline-success button__search">ASK!</button>
-                        </div>  
+<body>
+    <div class="container-fluid p-1 pt-2 pb-0 max__width">
+        <div class="d-flex justify-content-around">
+            <a href="/" class="col-sm-4 username ps-5">AskPimanov</a>
+
+            <div class="col-sm-4 d-flex align-items-center">
+                <div class="row p-2 text-center flex-grow-1">
+                    <div class="p-1 col">
+                        <input id="search input" class="form-control input__search" type="text"
+                            placeholder="Default input" aria-label="default input example"></input>
                     </div>
-                </div>
-
-                <div class="col-sm-4 pe-5">
-                    <div class="d-flex p-1 flex-row gap-3">
-                        <div class="col d-flex justify-content-end pe-0 flex-row">
-                            <img src="./static/ava.jpg" class="img__ava" alt="image"></img>
-                        </div>
-                        <div class="dropdown">
-                            <button class="btn btn-default" id="dropdownMenu" type="button" data-bs-toggle="dropdown" aria-expanded="false" style="position: relative;">
-                                <svg aria-hidden="true" width="23" height="38" viewBox="0 0 60 60">
-                                    <g transform="scale(0.06 0.06)">
-                                        <path d="M64 192h896v130h-896zM64 448h896v130h-896zM64 704h896v130h-896z"></path>
-                                    </g>
-                                </svg>   
-                            </button>
-                            <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
-                                    <li><div class="div__nickname">Umocho</div></li>
-                                    <li><hr class="dropdown-divider"></li>
-                                    <li><a class="dropdown-item" href="#">Settings</a></li>
-                                    <li><a class="dropdown-item" href="#">log out</a></li>
-                                </ul>
-                        </div>    
-
+                    <div class="p-1 fixed__button__div col_auto">
+                        <button type="button" class="btn btn-outline-success button__search">ASK!</button>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <hr class="m-1"></hr>
-        
-        <div class="row m-0 p-4 max__width m-auto">
-            <div class="col"></div>
+            <div class="col-sm-4 pe-5">
+                <div class="d-flex p-1 flex-row gap-3">
+                    <div class="col d-flex justify-content-end pe-0 flex-row">
+                        <img src="./static/ava.jpg" class="img__ava" alt="image"></img>
+                    </div>
+                    <div class="dropdown">
+                        <button class="btn btn-default" id="dropdownMenu" type="button" data-bs-toggle="dropdown"
+                            aria-expanded="false" style="position: relative;">
+                            <svg aria-hidden="true" width="23" height="38" viewBox="0 0 60 60">
+                                <g transform="scale(0.06 0.06)">
+                                    <path d="M64 192h896v130h-896zM64 448h896v130h-896zM64 704h896v130h-896z"></path>
+                                </g>
+                            </svg>
+                        </button>
+                        <ul class="dropdown-menu" aria-labelledby="dropdownMenu">
+                            <li>
+                                <div class="div__nickname">Umocho</div>
+                            </li>
+                            <li>
+                                <hr class="dropdown-divider">
+                            </li>
+                            <li><a class="dropdown-item" href="#">Settings</a></li>
+                            <li><a class="dropdown-item" href="#">log out</a></li>
+                        </ul>
+                    </div>
 
-            <div class="col-2 pt-4">
-                <div class="div__members__tags pb-1">Popular Tags</div>
-                <div class="d-flex gap-2 flex-wrap">
-                    <a href="#" class="tags a__tags">perl</a>
-                    <a href="#" class="tags a__tags">python</a>
-                    <a href="#" class="tags a__tags">Education</a>
-                    <a href="#" class="tags a__tags">MySQL</a>
-                    <a href="#" class="tags a__tags">django</a>
-                    <a href="#" class="tags a__tags">Mail.ru</a>
-                    <a href="#" class="tags a__tags">Voloshin</a>
-                    <a href="#" class="tags a__tags">Firefox</a>
-                </div>
-
-                <div class="div__members__tags pt-4 pb-2">Best Members</div>
-                <div class="d-flex flex-column gap-4">
-                    <a href="#" class="a__members">Mr. Freeman</a>
-                    <a href="#" class="a__members">Dr. House</a>
-                    <a href="#" class="a__members">Bender</a>
-                    <a href="#" class="a__members">Queen</a>
-                    <a href="#" class="a__members">V. Pipkin</a>
                 </div>
             </div>
         </div>
+    </div>
+
+    <hr class="m-1">
+    </hr>
+
+    <div class="row m-0 p-4 max__width m-auto">
+        <div class="col"></div>
+
+        <div class="col-2 pt-4">
+            <div class="div__members__tags pb-1">Popular Tags</div>
+            <div class="d-flex gap-2 flex-wrap">
+                <a href="#" class="tags a__tags">perl</a>
+                <a href="#" class="tags a__tags">python</a>
+                <a href="#" class="tags a__tags">Education</a>
+                <a href="#" class="tags a__tags">MySQL</a>
+                <a href="#" class="tags a__tags">django</a>
+                <a href="#" class="tags a__tags">Mail.ru</a>
+                <a href="#" class="tags a__tags">Voloshin</a>
+                <a href="#" class="tags a__tags">Firefox</a>
+            </div>
+
+            <div class="div__members__tags pt-4 pb-2">Best Members</div>
+            <div class="d-flex flex-column gap-4">
+                <a href="#" class="a__members">Mr. Freeman</a>
+                <a href="#" class="a__members">Dr. House</a>
+                <a href="#" class="a__members">Bender</a>
+                <a href="#" class="a__members">Queen</a>
+                <a href="#" class="a__members">V. Pipkin</a>
+            </div>
+        </div>
+    </div>
 
 
-        <script src="static/js/bootstrap.min.js"></script>
-        <script src="static/js/bootstrap.bundle.js"></script>
-        <script src="static/js/"></script>
+    <script src="static/js/bootstrap.min.js"></script>
+    <script src="static/js/bootstrap.bundle.js"></script>
 
-    </body>
+</body>
+
 </html>

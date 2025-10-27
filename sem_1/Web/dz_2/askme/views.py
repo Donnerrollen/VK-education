@@ -1,23 +1,20 @@
+from django.core.paginator import Paginator
 from django.shortcuts import render
 
-questions_array = [
-    {
-        "id" : 1,
-        "title": "I WIN 100000 DOLLARS IN TAIWAN",
-        "answer_count" : 20,
-        "answer": "HOW I CAN GET THEM?",
-        "tags": ["money", "a lot of money"],
-        "likes": 56,
-    },
-    {
-        "id": 2,
-        "title": "I WIN 100000 DOLLARS IN TAIWAN AGAIN",
-        "answer_count": 10,
-        "answer": "HOW I CAN GET THEM? AGAIN",
-        "tags": ["money", "a lot of money"],
-        "likes": 56,
-    },
-]
+questions_array = []
+for i in range(1, 100):
+    tags = []
+    for j in range(1, i):
+        tags.append(str(j))
+
+    questions_array.append({
+        "title": "I WIN " + str(i) + " DOLLARS IN TAIWAN",
+        "id": i,
+        "question": "HOW I CAN GET THEM MY " + str(i) + " DOLLARS?",
+        "likes": i,
+        "answer_count": i,
+        "tags": tags
+    })
 
 questions_answers_array = [
     {
@@ -56,12 +53,31 @@ best_members = [
     "Queen",
 ]
 
+def paginate(objects_list, request, per_page=10):
+    page = request.GET.get('page')
+    p = Paginator(objects_list, per_page)
+    page_obj = p.get_page(page)
+
+    return page_obj
+
 # Create your views here.
 def questions (request, *args):
-    return render(request, 'askme/questions.html', context={"questions_array": questions_array, "popular_tags": popular_tags, "best_members": best_members, "auth": False})
+    paginated_questions = paginate(questions_array, request)
+
+    return render(request, 'askme/questions.html', context={"questions_array": paginated_questions,
+                                                            "url_name": "questions",
+                                                            "popular_tags": popular_tags,
+                                                            "best_members": best_members,
+                                                            "auth": False})
 
 def hot_questions (request, *args):
-    return render(request, 'askme/hot_questions.html', context={"questions_array": questions_array[::-1], "popular_tags": popular_tags, "best_members": best_members, "auth": False})
+    paginated_questions = paginate(questions_array[::-1], request)
+
+    return render(request, 'askme/hot_questions.html', context={"questions_array": paginated_questions,
+                                                                "url_name": "hot_questions",
+                                                                "popular_tags": popular_tags,
+                                                                "best_members": best_members,
+                                                                "auth": False})
 
 def questions_with_tag(request, *args, tag_name):
     questions_array_tag = []
@@ -70,7 +86,14 @@ def questions_with_tag(request, *args, tag_name):
         if tag_name in i["tags"]:
             questions_array_tag.append(i)
 
-    return render(request, 'askme/question_tag.html', context={"questions_array": questions_array_tag, "tag": tag_name, "popular_tags": popular_tags, "best_members": best_members, "auth": False})
+    paginated_questions = paginate(questions_array_tag, request)
+
+    return render(request, 'askme/question_tag.html', context={"questions_array": paginated_questions,
+                                                               "tag": tag_name,
+                                                               "url_name": "questions_with_tag",
+                                                               "popular_tags": popular_tags,
+                                                               "best_members": best_members,
+                                                               "auth": False})
 
 def question(request, *args, id):
     for i in questions_array:
@@ -83,7 +106,13 @@ def question(request, *args, id):
         if i["id_question"] == id:
             answers_array.append(i)
 
-    return render(request, 'askme/question_answers.html', context={"question": question, "answers_array": answers_array, "popular_tags": popular_tags, "best_members": best_members, "auth": False})
+    return render(request, 'askme/question_answers.html', context={"question": question,
+                                                                   "answers_array": answers_array,
+                                                                   "popular_tags": popular_tags,
+                                                                   "best_members": best_members,
+                                                                   "auth": False})
 
 def ask(request, *args):
-    return render(request, 'askme/ask.html', context={"popular_tags": popular_tags, "best_members": best_members, "auth": True})
+    return render(request, 'askme/ask.html', context={"popular_tags": popular_tags,
+                                                      "best_members": best_members,
+                                                      "auth": True})

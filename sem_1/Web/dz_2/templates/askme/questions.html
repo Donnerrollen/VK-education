@@ -41,11 +41,11 @@
             </div>
             <div class="col d-flex flex-column">
                 <a class="a__card__title" href=" {% url 'question' i.id %} ">{{ i.title }}</a>
-                <div class="flex-wrap">{{ i.answer }}</div>
+                <div class="flex-wrap">{{ i.question }}</div>
                 <div class="d-flex flex-row gap-3 mt-auto mb-0 pt-2">
                     <div class="div__card__answers flex-nowrap">Answers: {{ i.answer_count }}</div>
                     <b>Tags:</b>
-                    <div class="d-flex gap-2 flex-wrap">    
+                    <div class="d-flex gap-2 flex-wrap">
                         {% for t in i.tags %}
                         <a href="{% url 'questions_with_tag' t %}" class="a__tags">{{ t }}</a>
                         {% endfor %}
@@ -56,25 +56,55 @@
     </div>
     {% endfor %}
 
-    <nav aria-label="...">
-        <ul class="pagination">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2</a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-            <li class="page-item"><a class="page-link" href="#">...</a></li>
-            <li class="page-item">
-            <li class="page-item"><a class="page-link" href="#">n</a></li>
-            <li class="page-item"></li>
+{% block pagination %}
+<nav aria-label="...">
+    <ul class="pagination">
+        {% if questions_array.has_previous %}
+        <li class="page-item">
+            <a class="page-link"
+                href="{% url url_name %}?page={{ questions_array.previous_page_number }}">Previous</a>
+        </li>
+        <li class="page-item"><a class="page-link" href="{% url url_name %}?page=1">1</a></li>
+
+        {% if questions_array.number != 2 and questions_array.number|add:"-2" != 1 %}
+        <li class="page-item"><a class="page-link">...</a></li>
+        {% endif %}
+        
+        {% else %}
+        <li class="page-item disabled">
+            <a class="page-link" href="#">Previous</a>
+        </li>
+        {% endif %}
+
+        {% if questions_array.number != 2 and questions_array.number != 1 %}
+        <li class="page-item"><a class="page-link" href="{% url url_name %}?page={{ questions_array.number|add:"-1"}}"> {{ questions_array.number|add:"-1" }} </a></li>
+        {% endif %}
+
+        <li class="page-item active" aria-current="page">
+            <a class="page-link" href="#"> {{ questions_array.number }} </a>
+        </li>
+
+        {% if questions_array.number|add:"1" != questions_array.paginator.num_pages and questions_array.number != questions_array.paginator.num_pages %}
+        <li class="page-item"><a class="page-link" href="{% url url_name %}?page={{ questions_array.number|add:"1" }}"> {{ questions_array.number|add:"1" }} </a></li>
+        {% endif %}
+
+        {% if questions_array.has_next %}
+        {% if questions_array.number|add:"1" != questions_array.paginator.num_pages and questions_array.number|add:"2" != questions_array.paginator.num_pages %}
+        <li class="page-item"><a class="page-link">...</a></li>
+        {% endif %}
+
+        <li class="page-item"><a class="page-link" href="{% url url_name %}?page={{ questions_array.paginator.num_pages }}"> {{ questions_array.paginator.num_pages }} </a></li>
+        <li class="page-item">
+            <a class="page-link" href="{% url url_name %}?page={{ questions_array.next_page_number }}">Next</a>
+        </li>
+        {% else %}
+        <li class="page-item disabled">
             <a class="page-link" href="#">Next</a>
-            </li>
-        </ul>
-    </nav>
+        </li>
+        {% endif %}
+    </ul>
+</nav>
+{% endblock %}
 
 </div>
 {% endblock %}
